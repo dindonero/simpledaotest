@@ -86,7 +86,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "/dataset/reentrancy/simple_dao.sol"
+                  "uri": "simple_dao.sol"
                 },
                 "region": {
                   "startLine": 19,
@@ -106,7 +106,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "/dataset/reentrancy/simple_dao.sol"
+                  "uri": "simple_dao.sol"
                 },
                 "region": {
                   "startLine": 19,
