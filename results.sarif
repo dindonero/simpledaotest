@@ -44,7 +44,7 @@
       "artifacts": [
         {
           "location": {
-            "uri": "/dataset/reentrancy/simple_dao.sol"
+            "uri": "simple_dao.sol"
           },
           "sourceLanguage": "Solidity"
         }
@@ -66,7 +66,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "/dataset/reentrancy/simple_dao.sol"
+                  "uri": "simple_dao.sol"
                 },
                 "region": {
                   "startLine": 13,
