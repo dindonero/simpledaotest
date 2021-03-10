@@ -48,27 +48,9 @@
           "informationUri": "https://github.com/trailofbits/manticore",
           "rules": [
             {
-              "id": "Reachableetherleaktosender",
+              "id": "Potentialreentrancyvulnerability",
               "shortDescription": {
-                "text": "Reachable ether leak to sender"
-              }
-            },
-            {
-              "id": "Reachableexternalcalltosender",
-              "shortDescription": {
-                "text": "Reachable external call to sender"
-              }
-            },
-            {
-              "id": "ReturnedvalueatCALLinstructionisnotused",
-              "shortDescription": {
-                "text": "Returned value at CALL instruction is not used"
-              }
-            },
-            {
-              "id": "Potentiallyreadinguninitializedstorage",
-              "shortDescription": {
-                "text": "Potentially reading uninitialized storage"
+                "text": "Potential reentrancy vulnerability"
               }
             },
             {
@@ -84,27 +66,21 @@
               }
             },
             {
-              "id": "Potentiallyreadinguninitializedstorage",
+              "id": "ReturnedvalueatCALLinstructionisnotused",
               "shortDescription": {
-                "text": "Potentially reading uninitialized storage"
+                "text": "Returned value at CALL instruction is not used"
               }
             },
             {
-              "id": "Potentiallyreadinguninitializedstorage",
+              "id": "Reachableetherleaktosender",
               "shortDescription": {
-                "text": "Potentially reading uninitialized storage"
+                "text": "Reachable ether leak to sender"
               }
             },
             {
-              "id": "Potentiallyreadinguninitializedstorage",
+              "id": "Reachableexternalcalltosender",
               "shortDescription": {
-                "text": "Potentially reading uninitialized storage"
-              }
-            },
-            {
-              "id": "Potentialreentrancyvulnerability",
-              "shortDescription": {
-                "text": "Potential reentrancy vulnerability"
+                "text": "Reachable external call to sender"
               }
             }
           ],
@@ -122,7 +98,7 @@
       "results": [
         {
           "message": {
-            "text": "Reachable ether leak to sender"
+            "text": "Potential reentrancy vulnerability"
           },
           "level": "warning",
           "locations": [
@@ -140,11 +116,33 @@
               }
             }
           ],
-          "ruleId": "Reachableetherleaktosender"
+          "ruleId": "Potentialreentrancyvulnerability"
         },
         {
           "message": {
-            "text": "Reachable external call to sender"
+            "text": "Potentially reading uninitialized storage"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {
+                    "text": "func"
+                  },
+                  "startLine": 12
+                }
+              }
+            }
+          ],
+          "ruleId": "Potentiallyreadinguninitializedstorage"
+        },
+        {
+          "message": {
+            "text": "Reentrancy multi-million ether bug"
           },
           "level": "warning",
           "locations": [
@@ -162,7 +160,7 @@
               }
             }
           ],
-          "ruleId": "Reachableexternalcalltosender"
+          "ruleId": "Reentrancymulti-millionetherbug"
         },
         {
           "message": {
@@ -199,28 +197,6 @@
                 },
                 "region": {
                   "snippet": {
-                    "text": "func"
-                  },
-                  "startLine": 12
-                }
-              }
-            }
-          ],
-          "ruleId": "Potentiallyreadinguninitializedstorage"
-        },
-        {
-          "message": {
-            "text": "Potentially reading uninitialized storage"
-          },
-          "level": "warning",
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "simple_dao.sol"
-                },
-                "region": {
-                  "snippet": {
                     "text": ""
                   },
                   "startLine": 18
@@ -232,7 +208,7 @@
         },
         {
           "message": {
-            "text": "Reentrancy multi-million ether bug"
+            "text": "Reachable ether leak to sender"
           },
           "level": "warning",
           "locations": [
@@ -250,29 +226,7 @@
               }
             }
           ],
-          "ruleId": "Reentrancymulti-millionetherbug"
-        },
-        {
-          "message": {
-            "text": "Potentially reading uninitialized storage"
-          },
-          "level": "warning",
-          "locations": [
-            {
-              "physicalLocation": {
-                "artifactLocation": {
-                  "uri": "simple_dao.sol"
-                },
-                "region": {
-                  "snippet": {
-                    "text": ""
-                  },
-                  "startLine": 28
-                }
-              }
-            }
-          ],
-          "ruleId": "Potentiallyreadinguninitializedstorage"
+          "ruleId": "Reachableetherleaktosender"
         },
         {
           "message": {
@@ -298,6 +252,28 @@
         },
         {
           "message": {
+            "text": "Reachable external call to sender"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {
+                    "text": "credit[msg"
+                  },
+                  "startLine": 20
+                }
+              }
+            }
+          ],
+          "ruleId": "Reachableexternalcalltosender"
+        },
+        {
+          "message": {
             "text": "Potentially reading uninitialized storage"
           },
           "level": "warning",
@@ -320,7 +296,7 @@
         },
         {
           "message": {
-            "text": "Potential reentrancy vulnerability"
+            "text": "Potentially reading uninitialized storage"
           },
           "level": "warning",
           "locations": [
@@ -331,14 +307,14 @@
                 },
                 "region": {
                   "snippet": {
-                    "text": "credit[msg"
+                    "text": ""
                   },
-                  "startLine": 20
+                  "startLine": 28
                 }
               }
             }
           ],
-          "ruleId": "Potentialreentrancyvulnerability"
+          "ruleId": "Potentiallyreadinguninitializedstorage"
         }
       ]
     },
@@ -1051,18 +1027,6 @@
               }
             },
             {
-              "id": "external-function",
-              "fullDescription": {
-                "text": "SimpleDAO.withdraw (/dataset/reentrancy/simple_dao.sol#16-24) should be declared external\n"
-              }
-            },
-            {
-              "id": "external-function",
-              "fullDescription": {
-                "text": "SimpleDAO.queryCredit (/dataset/reentrancy/simple_dao.sol#24-27) should be declared external\n"
-              }
-            },
-            {
               "id": "solc-version",
               "fullDescription": {
                 "text": "Detected issues with version pragma in /dataset/reentrancy/simple_dao.sol:\n\t- pragma solidity^0.4.2 (/dataset/reentrancy/simple_dao.sol#7-9): it allows old versions\n"
@@ -1337,18 +1301,6 @@
               "shortDescription": {
                 "text": "SOLIDITY_VISIBILITY"
               }
-            },
-            {
-              "id": "SOLIDITY_VISIBILITY",
-              "shortDescription": {
-                "text": "SOLIDITY_VISIBILITY"
-              }
-            },
-            {
-              "id": "SOLIDITY_VISIBILITY",
-              "shortDescription": {
-                "text": "SOLIDITY_VISIBILITY"
-              }
             }
           ],
           "version": "0.0.12"
@@ -1529,156 +1481,12 @@
               "shortDescription": {
                 "text": "Expected indentation of 4 spaces but found 2"
               }
-            },
-            {
-              "id": "indent",
-              "shortDescription": {
-                "text": "Expected indentation of 4 spaces but found 2"
-              }
-            },
-            {
-              "id": "indent",
-              "shortDescription": {
-                "text": "Expected indentation of 8 spaces but found 4"
-              }
-            },
-            {
-              "id": "indent",
-              "shortDescription": {
-                "text": "Expected indentation of 4 spaces but found 2"
-              }
-            },
-            {
-              "id": "indent",
-              "shortDescription": {
-                "text": "Expected indentation of 4 spaces but found 2"
-              }
-            },
-            {
-              "id": "indent",
-              "shortDescription": {
-                "text": "Expected indentation of 8 spaces but found 4"
-              }
-            },
-            {
-              "id": "indent",
-              "shortDescription": {
-                "text": "Expected indentation of 12 spaces but found 6"
-              }
-            },
-            {
-              "id": "indent",
-              "shortDescription": {
-                "text": "Expected indentation of 12 spaces but found 6"
-              }
-            },
-            {
-              "id": "indent",
-              "shortDescription": {
-                "text": "Expected indentation of 8 spaces but found 4"
-              }
-            },
-            {
-              "id": "indent",
-              "shortDescription": {
-                "text": "Expected indentation of 4 spaces but found 2"
-              }
-            },
-            {
-              "id": "indent",
-              "shortDescription": {
-                "text": "Expected indentation of 4 spaces but found 2"
-              }
-            },
-            {
-              "id": "indent",
-              "shortDescription": {
-                "text": "Expected indentation of 8 spaces but found 4"
-              }
-            },
-            {
-              "id": "indent",
-              "shortDescription": {
-                "text": "Expected indentation of 4 spaces but found 2"
-              }
             }
           ],
           "version": "3.3.2"
         }
       },
       "artifacts": [
-        {
-          "location": {
-            "uri": "dataset/reentrancy/simple_dao.sol"
-          },
-          "sourceLanguage": "Solidity"
-        },
-        {
-          "location": {
-            "uri": "dataset/reentrancy/simple_dao.sol"
-          },
-          "sourceLanguage": "Solidity"
-        },
-        {
-          "location": {
-            "uri": "dataset/reentrancy/simple_dao.sol"
-          },
-          "sourceLanguage": "Solidity"
-        },
-        {
-          "location": {
-            "uri": "dataset/reentrancy/simple_dao.sol"
-          },
-          "sourceLanguage": "Solidity"
-        },
-        {
-          "location": {
-            "uri": "dataset/reentrancy/simple_dao.sol"
-          },
-          "sourceLanguage": "Solidity"
-        },
-        {
-          "location": {
-            "uri": "dataset/reentrancy/simple_dao.sol"
-          },
-          "sourceLanguage": "Solidity"
-        },
-        {
-          "location": {
-            "uri": "dataset/reentrancy/simple_dao.sol"
-          },
-          "sourceLanguage": "Solidity"
-        },
-        {
-          "location": {
-            "uri": "dataset/reentrancy/simple_dao.sol"
-          },
-          "sourceLanguage": "Solidity"
-        },
-        {
-          "location": {
-            "uri": "dataset/reentrancy/simple_dao.sol"
-          },
-          "sourceLanguage": "Solidity"
-        },
-        {
-          "location": {
-            "uri": "dataset/reentrancy/simple_dao.sol"
-          },
-          "sourceLanguage": "Solidity"
-        },
-        {
-          "location": {
-            "uri": "dataset/reentrancy/simple_dao.sol"
-          },
-          "sourceLanguage": "Solidity"
-        },
-        {
-          "location": {
-            "uri": "dataset/reentrancy/simple_dao.sol"
-          },
-          "sourceLanguage": "Solidity"
-        },
         {
           "location": {
             "uri": "dataset/reentrancy/simple_dao.sol"
