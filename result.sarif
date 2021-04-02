@@ -10,22 +10,22 @@
           "informationUri": "https://oyente.tech/",
           "rules": [
             {
-              "id": "arithmetic_11",
-              "name": "arithmetic",
+              "id": "Arithmetic_11",
+              "name": "Arithmetic",
               "shortDescription": {
                 "text": "Integer Overflow."
               }
             },
             {
-              "id": "denial_service_2",
-              "name": "denial_service",
+              "id": "DenialService_2",
+              "name": "DenialService",
               "shortDescription": {
                 "text": "Callstack Depth Attack Vulnerability."
               }
             },
             {
-              "id": "reentrancy_6",
-              "name": "reentrancy",
+              "id": "Reentrancy_6",
+              "name": "Reentrancy",
               "shortDescription": {
                 "text": "Re-Entrancy Vulnerability."
               }
@@ -67,7 +67,7 @@
               }
             }
           ],
-          "ruleId": "arithmetic_11"
+          "ruleId": "Arithmetic_11"
         },
         {
           "message": {
@@ -87,7 +87,7 @@
               }
             }
           ],
-          "ruleId": "denial_service_2"
+          "ruleId": "DenialService_2"
         },
         {
           "message": {
@@ -107,7 +107,7 @@
               }
             }
           ],
-          "ruleId": "reentrancy_6"
+          "ruleId": "Reentrancy_6"
         }
       ]
     }
