@@ -1,0 +1,117 @@
+{
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Oyente",
+          "fullDescription": {
+            "text": "Oyente runs on symbolic execution, determines which inputs cause which program branches to execute, to find potential security vulnerabilities. Oyente works directly with EVM bytecode without access high level representation and does not provide soundness nor completeness."
+          },
+          "informationUri": "https://oyente.tech/",
+          "rules": [
+            {
+              "id": "arithmetic_11",
+              "name": "arithmetic",
+              "shortDescription": {
+                "text": "Integer Overflow."
+              }
+            },
+            {
+              "id": "denial_service_2",
+              "name": "denial_service",
+              "shortDescription": {
+                "text": "Callstack Depth Attack Vulnerability."
+              }
+            },
+            {
+              "id": "reentrancy_6",
+              "name": "reentrancy",
+              "shortDescription": {
+                "text": "Re-Entrancy Vulnerability."
+              }
+            }
+          ],
+          "version": "0.4.25"
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "dataset/reentrancy/simple_dao.sol"
+          },
+          "sourceLanguage": "Solidity"
+        }
+      ],
+      "logicalLocations": [
+        {
+          "kind": "contract",
+          "name": "SimpleDAO"
+        }
+      ],
+      "results": [
+        {
+          "message": {
+            "text": "Integer Overflow."
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "startColumn": 5,
+                  "startLine": 13
+                }
+              }
+            }
+          ],
+          "ruleId": "arithmetic_11"
+        },
+        {
+          "message": {
+            "text": "Callstack Depth Attack Vulnerability."
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "startColumn": 18,
+                  "startLine": 19
+                }
+              }
+            }
+          ],
+          "ruleId": "denial_service_2"
+        },
+        {
+          "message": {
+            "text": "Re-Entrancy Vulnerability."
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "startColumn": 18,
+                  "startLine": 19
+                }
+              }
+            }
+          ],
+          "ruleId": "reentrancy_6"
+        }
+      ]
+    }
+  ],
+  "version": "2.1.0",
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json"
+}
