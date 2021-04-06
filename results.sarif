@@ -3,6 +3,709 @@
     {
       "tool": {
         "driver": {
+          "name": "HoneyBadger",
+          "fullDescription": {
+            "text": "An analysis tool to detect honeypots in Ethereum smart contracts"
+          },
+          "informationUri": "https://honeybadger.uni.lu/",
+          "rules": [],
+          "version": "1.8.16"
+        }
+      },
+      "artifacts": [],
+      "logicalLocations": [],
+      "results": []
+    },
+    {
+      "tool": {
+        "driver": {
+          "name": "Osiris",
+          "fullDescription": {
+            "text": "Osiris is an analysis tool to detect integer bugs in Ethereum smart contracts. Osiris is based on Oyente."
+          },
+          "informationUri": "https://github.com/christoftorres/Osiris",
+          "rules": [
+            {
+              "id": "Arithmetic_7",
+              "name": "ArithmeticVulnerability",
+              "shortDescription": {
+                "text": "overflow_bugs"
+              }
+            },
+            {
+              "id": "Arithmetic_10",
+              "name": "ArithmeticVulnerability",
+              "shortDescription": {
+                "text": "underflow_bugs"
+              }
+            }
+          ],
+          "version": "1.0"
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "dataset/reentrancy/simple_dao.sol"
+          },
+          "sourceLanguage": "Solidity"
+        }
+      ],
+      "logicalLocations": [
+        {
+          "kind": "contract",
+          "name": "SimpleDAO"
+        }
+      ],
+      "results": [
+        {
+          "message": {
+            "text": "overflow_bugs"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {},
+                  "startColumn": 5,
+                  "startLine": 13
+                }
+              }
+            }
+          ],
+          "ruleId": "Arithmetic_7"
+        },
+        {
+          "message": {
+            "text": "underflow_bugs"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {},
+                  "startColumn": 7,
+                  "startLine": 20
+                }
+              }
+            }
+          ],
+          "ruleId": "Arithmetic_10"
+        }
+      ]
+    },
+    {
+      "tool": {
+        "driver": {
+          "name": "Slither",
+          "fullDescription": {
+            "text": "Slither is a Solidity static analysis framework written in Python 3. It runs a suite of vulnerability detectors and prints visual information about contract details. Slither enables developers to find vulnerabilities, enhance their code comphrehension, and quickly prototype custom analyses."
+          },
+          "informationUri": "https://github.com/crytic/slither",
+          "rules": [
+            {
+              "id": "Reentrancy_10",
+              "fullDescription": {
+                "text": "Reentrancy in SimpleDAO.withdraw (/dataset/reentrancy/simple_dao.sol#16-24):\n\tExternal calls:\n\t- res = msg.sender.call.value(amount)() (/dataset/reentrancy/simple_dao.sol#19-20)\n\tState variables written after the call(s):\n\t- credit (/dataset/reentrancy/simple_dao.sol#20-24)\n"
+              },
+              "name": "Reentrancy",
+              "shortDescription": {
+                "text": "reentrancy-eth"
+              }
+            },
+            {
+              "id": "Ignore_11",
+              "fullDescription": {
+                "text": "SimpleDAO.donate (/dataset/reentrancy/simple_dao.sol#12-16) should be declared external\n"
+              },
+              "name": "Ignore",
+              "shortDescription": {
+                "text": "external-function"
+              }
+            },
+            {
+              "id": "Ignore_17",
+              "fullDescription": {
+                "text": "Detected issues with version pragma in /dataset/reentrancy/simple_dao.sol:\n\t- pragma solidity^0.4.2 (/dataset/reentrancy/simple_dao.sol#7-9): it allows old versions\n"
+              },
+              "name": "Ignore",
+              "shortDescription": {
+                "text": "solc-version"
+              }
+            },
+            {
+              "id": "UncheckedLowCalls_5",
+              "fullDescription": {
+                "text": "Low level call in SimpleDAO.withdraw (/dataset/reentrancy/simple_dao.sol#16-24):\n\t-res = msg.sender.call.value(amount)() /dataset/reentrancy/simple_dao.sol#19-20\n"
+              },
+              "name": "UncheckedLowCalls",
+              "shortDescription": {
+                "text": "low-level-calls"
+              }
+            }
+          ],
+          "version": "0.7.0"
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "dataset/reentrancy/simple_dao.sol"
+          },
+          "sourceLanguage": "Solidity"
+        }
+      ],
+      "results": [
+        {
+          "message": {
+            "text": "reentrancy-eth"
+          },
+          "level": "error",
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "kind": "function",
+                  "name": "withdraw"
+                },
+                {
+                  "kind": "contract",
+                  "name": "SimpleDAO"
+                }
+              ],
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "endLine": 24,
+                  "startLine": 16
+                }
+              }
+            },
+            {
+              "logicalLocations": [],
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "endLine": 20,
+                  "snippet": {
+                    "text": "res = msg.sender.call.value(amount)()"
+                  },
+                  "startLine": 19
+                }
+              }
+            },
+            {
+              "logicalLocations": [
+                {
+                  "kind": "variables_written",
+                  "name": "credit"
+                }
+              ],
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "endLine": 24,
+                  "snippet": {
+                    "text": "credit[msg.sender] -= amount"
+                  },
+                  "startLine": 20
+                }
+              }
+            }
+          ],
+          "ruleId": "Reentrancy_10"
+        },
+        {
+          "message": {
+            "text": "external-function"
+          },
+          "level": "note",
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "kind": "function",
+                  "name": "donate"
+                },
+                {
+                  "kind": "contract",
+                  "name": "SimpleDAO"
+                }
+              ],
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "endLine": 16,
+                  "startLine": 12
+                }
+              }
+            }
+          ],
+          "ruleId": "Ignore_11"
+        },
+        {
+          "message": {
+            "text": "external-function"
+          },
+          "level": "note",
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "kind": "function",
+                  "name": "withdraw"
+                },
+                {
+                  "kind": "contract",
+                  "name": "SimpleDAO"
+                }
+              ],
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "endLine": 24,
+                  "startLine": 16
+                }
+              }
+            }
+          ],
+          "ruleId": "Ignore_11"
+        },
+        {
+          "message": {
+            "text": "external-function"
+          },
+          "level": "note",
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "kind": "function",
+                  "name": "queryCredit"
+                },
+                {
+                  "kind": "contract",
+                  "name": "SimpleDAO"
+                }
+              ],
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "endLine": 27,
+                  "startLine": 24
+                }
+              }
+            }
+          ],
+          "ruleId": "Ignore_11"
+        },
+        {
+          "message": {
+            "text": "solc-version"
+          },
+          "level": "note",
+          "locations": [
+            {
+              "logicalLocations": [],
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "endLine": 9,
+                  "snippet": {
+                    "text": "^0.4.2"
+                  },
+                  "startLine": 7
+                }
+              }
+            }
+          ],
+          "ruleId": "Ignore_17"
+        },
+        {
+          "message": {
+            "text": "low-level-calls"
+          },
+          "level": "note",
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "kind": "function",
+                  "name": "withdraw"
+                },
+                {
+                  "kind": "contract",
+                  "name": "SimpleDAO"
+                }
+              ],
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "endLine": 24,
+                  "startLine": 16
+                }
+              }
+            },
+            {
+              "logicalLocations": [],
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "endLine": 20,
+                  "snippet": {
+                    "text": "res = msg.sender.call.value(amount)()"
+                  },
+                  "startLine": 19
+                }
+              }
+            }
+          ],
+          "ruleId": "UncheckedLowCalls_5"
+        }
+      ]
+    },
+    {
+      "tool": {
+        "driver": {
+          "name": "Solhint",
+          "fullDescription": {
+            "text": "Open source project for linting solidity code. This project provide both security and style guide validations."
+          },
+          "informationUri": "https://protofire.github.io/solhint/",
+          "rules": [
+            {
+              "id": "Ignore_40",
+              "fullDescription": {
+                "text": "Expected indentation of 4 spaces but found 2"
+              },
+              "name": "Ignore",
+              "shortDescription": {
+                "text": "indent"
+              }
+            }
+          ],
+          "version": "3.3.2"
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "dataset/reentrancy/simple_dao.sol"
+          },
+          "sourceLanguage": "Solidity"
+        }
+      ],
+      "logicalLocations": [
+        {
+          "kind": "contract",
+          "name": "simple_dao"
+        }
+      ],
+      "results": [
+        {
+          "message": {
+            "text": "indent"
+          },
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {},
+                  "startColumn": 3,
+                  "startLine": 10
+                }
+              }
+            }
+          ],
+          "ruleId": "Ignore_40"
+        },
+        {
+          "message": {
+            "text": "indent"
+          },
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {},
+                  "startColumn": 3,
+                  "startLine": 12
+                }
+              }
+            }
+          ],
+          "ruleId": "Ignore_40"
+        },
+        {
+          "message": {
+            "text": "indent"
+          },
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {},
+                  "startColumn": 5,
+                  "startLine": 13
+                }
+              }
+            }
+          ],
+          "ruleId": "Ignore_40"
+        },
+        {
+          "message": {
+            "text": "indent"
+          },
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {},
+                  "startColumn": 3,
+                  "startLine": 14
+                }
+              }
+            }
+          ],
+          "ruleId": "Ignore_40"
+        },
+        {
+          "message": {
+            "text": "indent"
+          },
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {},
+                  "startColumn": 3,
+                  "startLine": 16
+                }
+              }
+            }
+          ],
+          "ruleId": "Ignore_40"
+        },
+        {
+          "message": {
+            "text": "indent"
+          },
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {},
+                  "startColumn": 5,
+                  "startLine": 17
+                }
+              }
+            }
+          ],
+          "ruleId": "Ignore_40"
+        },
+        {
+          "message": {
+            "text": "indent"
+          },
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {},
+                  "startColumn": 7,
+                  "startLine": 19
+                }
+              }
+            }
+          ],
+          "ruleId": "Ignore_40"
+        },
+        {
+          "message": {
+            "text": "indent"
+          },
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {},
+                  "startColumn": 7,
+                  "startLine": 20
+                }
+              }
+            }
+          ],
+          "ruleId": "Ignore_40"
+        },
+        {
+          "message": {
+            "text": "indent"
+          },
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {},
+                  "startColumn": 5,
+                  "startLine": 21
+                }
+              }
+            }
+          ],
+          "ruleId": "Ignore_40"
+        },
+        {
+          "message": {
+            "text": "indent"
+          },
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {},
+                  "startColumn": 3,
+                  "startLine": 22
+                }
+              }
+            }
+          ],
+          "ruleId": "Ignore_40"
+        },
+        {
+          "message": {
+            "text": "indent"
+          },
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {},
+                  "startColumn": 3,
+                  "startLine": 24
+                }
+              }
+            }
+          ],
+          "ruleId": "Ignore_40"
+        },
+        {
+          "message": {
+            "text": "indent"
+          },
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {},
+                  "startColumn": 5,
+                  "startLine": 25
+                }
+              }
+            }
+          ],
+          "ruleId": "Ignore_40"
+        },
+        {
+          "message": {
+            "text": "indent"
+          },
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {},
+                  "startColumn": 3,
+                  "startLine": 26
+                }
+              }
+            }
+          ],
+          "ruleId": "Ignore_40"
+        }
+      ]
+    },
+    {
+      "tool": {
+        "driver": {
           "name": "Oyente",
           "fullDescription": {
             "text": "Oyente runs on symbolic execution, determines which inputs cause which program branches to execute, to find potential security vulnerabilities. Oyente works directly with EVM bytecode without access high level representation and does not provide soundness nor completeness."
@@ -10,22 +713,22 @@
           "informationUri": "https://oyente.tech/",
           "rules": [
             {
-              "id": "arithmetic_11",
-              "name": "arithmetic",
+              "id": "Arithmetic_11",
+              "name": "ArithmeticVulnerability",
               "shortDescription": {
                 "text": "Integer Overflow."
               }
             },
             {
-              "id": "denial_service_2",
-              "name": "denial_service",
+              "id": "DenialService_2",
+              "name": "DenialServiceVulnerability",
               "shortDescription": {
                 "text": "Callstack Depth Attack Vulnerability."
               }
             },
             {
-              "id": "reentrancy_6",
-              "name": "reentrancy",
+              "id": "Reentrancy_6",
+              "name": "ReentrancyVulnerability",
               "shortDescription": {
                 "text": "Re-Entrancy Vulnerability."
               }
@@ -36,7 +739,9 @@
       },
       "artifacts": [
         {
-          "location": {},
+          "location": {
+            "uri": "dataset/reentrancy/simple_dao.sol"
+          },
           "sourceLanguage": "Solidity"
         }
       ],
@@ -55,15 +760,18 @@
           "locations": [
             {
               "physicalLocation": {
-                "artifactLocation": {},
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
                 "region": {
+                  "snippet": {},
                   "startColumn": 5,
                   "startLine": 13
                 }
               }
             }
           ],
-          "ruleId": "arithmetic_11"
+          "ruleId": "Arithmetic_11"
         },
         {
           "message": {
@@ -73,15 +781,18 @@
           "locations": [
             {
               "physicalLocation": {
-                "artifactLocation": {},
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
                 "region": {
+                  "snippet": {},
                   "startColumn": 18,
                   "startLine": 19
                 }
               }
             }
           ],
-          "ruleId": "denial_service_2"
+          "ruleId": "DenialService_2"
         },
         {
           "message": {
@@ -91,17 +802,989 @@
           "locations": [
             {
               "physicalLocation": {
-                "artifactLocation": {},
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
                 "region": {
+                  "snippet": {},
                   "startColumn": 18,
                   "startLine": 19
                 }
               }
             }
           ],
-          "ruleId": "reentrancy_6"
+          "ruleId": "Reentrancy_6"
         }
       ]
+    },
+    {
+      "tool": {
+        "driver": {
+          "name": "Mythril",
+          "fullDescription": {
+            "text": "Mythril analyses EVM bytecode using symbolic analysis, taint analysis and control flow checking to detect a variety of security vulnerabilities."
+          },
+          "informationUri": "https://mythx.io/",
+          "rules": [
+            {
+              "id": "Arithmetic_4",
+              "fullDescription": {
+                "text": "A possible integer overflow exists in the function `fallback`.\nThe addition or multiplication may result in a value higher than the maximum representable integer."
+              },
+              "name": "Arithmetic",
+              "shortDescription": {
+                "text": "Integer Overflow"
+              }
+            },
+            {
+              "id": "Reentrancy_3",
+              "fullDescription": {
+                "text": "This contract executes a message call to the address of the transaction sender. Generally, it is not recommended to call user-supplied addresses using Solidity's call() construct. Note that attackers might leverage reentrancy attacks to exploit race conditions or manipulate this contract's state."
+              },
+              "name": "Reentrancy",
+              "shortDescription": {
+                "text": "Message call to external contract"
+              }
+            },
+            {
+              "id": "UncheckedLowCalls_3",
+              "fullDescription": {
+                "text": "The return value of an external call is not checked. Note that execution continue even if the called contract throws."
+              },
+              "name": "UncheckedLowCalls",
+              "shortDescription": {
+                "text": "Unchecked CALL return value"
+              }
+            },
+            {
+              "id": "Reentrancy_4",
+              "fullDescription": {
+                "text": "The contract account state is changed after an external call. Consider that the called contract could re-enter the function before this state change takes place. This can lead to business logic vulnerabilities."
+              },
+              "name": "Reentrancy",
+              "shortDescription": {
+                "text": "State change after external call"
+              }
+            }
+          ],
+          "version": "0.4.25"
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "dataset/reentrancy/simple_dao.sol"
+          },
+          "sourceLanguage": "Solidity"
+        }
+      ],
+      "logicalLocations": [
+        {
+          "kind": "function",
+          "name": "fallback"
+        },
+        {
+          "kind": "function",
+          "name": "withdraw(uint256)"
+        }
+      ],
+      "results": [
+        {
+          "message": {
+            "text": "Integer Overflow "
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "kind": "function",
+                  "name": "fallback"
+                }
+              ],
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {
+                    "text": "= msg.value;\n  }\n\n  fun"
+                  },
+                  "startLine": 13
+                }
+              }
+            }
+          ],
+          "ruleId": "Arithmetic_4"
+        },
+        {
+          "message": {
+            "text": "Message call to external contract"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "kind": "function",
+                  "name": "withdraw(uint256)"
+                }
+              ],
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {
+                    "text": "lue(amount)();\n      credit[msg"
+                  },
+                  "startLine": 19
+                }
+              }
+            }
+          ],
+          "ruleId": "Reentrancy_3"
+        },
+        {
+          "message": {
+            "text": "Unchecked CALL return value"
+          },
+          "level": "note",
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "kind": "function",
+                  "name": "withdraw(uint256)"
+                }
+              ],
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {
+                    "text": "lue(amount)();\n      credit[msg"
+                  },
+                  "startLine": 19
+                }
+              }
+            }
+          ],
+          "ruleId": "UncheckedLowCalls_3"
+        },
+        {
+          "message": {
+            "text": "State change after external call"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "logicalLocations": [
+                {
+                  "kind": "function",
+                  "name": "withdraw(uint256)"
+                }
+              ],
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {
+                    "text": "=amount;\n    }\n  }\n\n  func"
+                  },
+                  "startLine": 20
+                }
+              }
+            }
+          ],
+          "ruleId": "Reentrancy_4"
+        }
+      ]
+    },
+    {
+      "tool": {
+        "driver": {
+          "name": "SmartCheck",
+          "fullDescription": {
+            "text": "Securify automatically checks for vulnerabilities and bad coding practices. It runs lexical and syntactical analysis on Solidity source code."
+          },
+          "informationUri": "https://tool.smartdec.net/",
+          "rules": [
+            {
+              "id": "Reentrancy_12",
+              "name": "ReentrancyVulnerability",
+              "shortDescription": {
+                "text": "SOLIDITY_CALL_WITHOUT_DATA"
+              }
+            },
+            {
+              "id": "Ignore_28",
+              "name": "IgnoreVulnerability",
+              "shortDescription": {
+                "text": "SOLIDITY_PRAGMAS_VERSION"
+              }
+            },
+            {
+              "id": "Ignore_36",
+              "name": "IgnoreVulnerability",
+              "shortDescription": {
+                "text": "SOLIDITY_UPGRADE_TO_050"
+              }
+            },
+            {
+              "id": "Ignore_38",
+              "name": "IgnoreVulnerability",
+              "shortDescription": {
+                "text": "SOLIDITY_VISIBILITY"
+              }
+            }
+          ],
+          "version": "0.0.12"
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "simple_dao"
+          },
+          "sourceLanguage": "Solidity"
+        }
+      ],
+      "logicalLocations": [
+        {
+          "kind": "contract",
+          "name": "simple_dao"
+        }
+      ],
+      "results": [
+        {
+          "message": {
+            "text": "SOLIDITY_CALL_WITHOUT_DATA"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "simple_dao"
+                },
+                "region": {
+                  "snippet": {
+                    "text": "call.value(amount)()"
+                  },
+                  "startColumn": 28,
+                  "startLine": 19
+                }
+              }
+            }
+          ],
+          "ruleId": "Reentrancy_12"
+        },
+        {
+          "message": {
+            "text": "SOLIDITY_PRAGMAS_VERSION"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "simple_dao"
+                },
+                "region": {
+                  "snippet": {
+                    "text": "^"
+                  },
+                  "startColumn": 16,
+                  "startLine": 7
+                }
+              }
+            }
+          ],
+          "ruleId": "Ignore_28"
+        },
+        {
+          "message": {
+            "text": "SOLIDITY_UPGRADE_TO_050"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "simple_dao"
+                },
+                "region": {
+                  "snippet": {
+                    "text": "call.value(amount)()"
+                  },
+                  "startColumn": 28,
+                  "startLine": 19
+                }
+              }
+            }
+          ],
+          "ruleId": "Ignore_36"
+        },
+        {
+          "message": {
+            "text": "SOLIDITY_VISIBILITY"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "simple_dao"
+                },
+                "region": {
+                  "snippet": {
+                    "text": "functiondonate(addressto)payable{credit[to]+=msg.value;}"
+                  },
+                  "startColumn": 2,
+                  "startLine": 12
+                }
+              }
+            }
+          ],
+          "ruleId": "Ignore_38"
+        },
+        {
+          "message": {
+            "text": "SOLIDITY_VISIBILITY"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "simple_dao"
+                },
+                "region": {
+                  "snippet": {
+                    "text": "functionwithdraw(uintamount){if(credit[msg.sender]>=amount){boolres=msg.sender.call.value(amount)();credit[msg.sender]-=amount;}}"
+                  },
+                  "startColumn": 2,
+                  "startLine": 16
+                }
+              }
+            }
+          ],
+          "ruleId": "Ignore_38"
+        },
+        {
+          "message": {
+            "text": "SOLIDITY_VISIBILITY"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "simple_dao"
+                },
+                "region": {
+                  "snippet": {
+                    "text": "functionqueryCredit(addressto)returns(uint){returncredit[to];}"
+                  },
+                  "startColumn": 2,
+                  "startLine": 24
+                }
+              }
+            }
+          ],
+          "ruleId": "Ignore_38"
+        }
+      ]
+    },
+    {
+      "tool": {
+        "driver": {
+          "name": "Securify",
+          "fullDescription": {
+            "text": "Securify uses formal verification, also relying on static analysis checks. Securify\u2019s analysis consists of two steps. First, it symbolically analyzes the contract\u2019s dependency graph to extract precise semantic information from the code. Then, it checks compliance and violation patterns that capture sufficient conditions for proving if a property holds or not."
+          },
+          "informationUri": "https://github.com/eth-sri/securify2",
+          "rules": [
+            {
+              "id": "FrontRunning_3",
+              "name": "FrontRunningVulnerability",
+              "shortDescription": {
+                "text": "TODReceiver"
+              }
+            },
+            {
+              "id": "UncheckedLowCalls_4",
+              "name": "UncheckedLowCallsVulnerability",
+              "shortDescription": {
+                "text": "UnhandledException"
+              }
+            },
+            {
+              "id": "FrontRunning_4",
+              "name": "FrontRunningVulnerability",
+              "shortDescription": {
+                "text": "TODTransfer"
+              }
+            },
+            {
+              "id": "Reentrancy_7",
+              "name": "ReentrancyVulnerability",
+              "shortDescription": {
+                "text": "DAO"
+              }
+            },
+            {
+              "id": "FrontRunning_2",
+              "name": "FrontRunningVulnerability",
+              "shortDescription": {
+                "text": "TODAmount"
+              }
+            },
+            {
+              "id": "Ignore_3",
+              "name": "IgnoreVulnerability",
+              "shortDescription": {
+                "text": "MissingInputValidation"
+              }
+            },
+            {
+              "id": "AccessControl_17",
+              "name": "AccessControlVulnerability",
+              "shortDescription": {
+                "text": "UnrestrictedEtherFlow"
+              }
+            }
+          ],
+          "version": "0.4.25"
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "dataset/reentrancy/simple_dao.sol"
+          },
+          "sourceLanguage": "Solidity"
+        }
+      ],
+      "logicalLocations": [
+        {
+          "kind": "contract",
+          "name": "SimpleDAO"
+        }
+      ],
+      "results": [
+        {
+          "message": {
+            "text": "TODReceiver"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {},
+                  "startLine": 18
+                }
+              }
+            }
+          ],
+          "ruleId": "FrontRunning_3"
+        },
+        {
+          "message": {
+            "text": "UnhandledException"
+          },
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {},
+                  "startLine": 18
+                }
+              }
+            }
+          ],
+          "ruleId": "UncheckedLowCalls_4"
+        },
+        {
+          "message": {
+            "text": "TODTransfer"
+          },
+          "level": "none",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {},
+                  "startLine": 18
+                }
+              }
+            }
+          ],
+          "ruleId": "FrontRunning_4"
+        },
+        {
+          "message": {
+            "text": "DAO"
+          },
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {},
+                  "startLine": 18
+                }
+              }
+            }
+          ],
+          "ruleId": "Reentrancy_7"
+        },
+        {
+          "message": {
+            "text": "TODAmount"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {},
+                  "startLine": 18
+                }
+              }
+            }
+          ],
+          "ruleId": "FrontRunning_2"
+        },
+        {
+          "message": {
+            "text": "MissingInputValidation"
+          },
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {},
+                  "startLine": 23
+                }
+              }
+            }
+          ],
+          "ruleId": "Ignore_3"
+        },
+        {
+          "message": {
+            "text": "MissingInputValidation"
+          },
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {},
+                  "startLine": 11
+                }
+              }
+            }
+          ],
+          "ruleId": "Ignore_3"
+        },
+        {
+          "message": {
+            "text": "MissingInputValidation"
+          },
+          "level": "error",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {},
+                  "startLine": 9
+                }
+              }
+            }
+          ],
+          "ruleId": "Ignore_3"
+        },
+        {
+          "message": {
+            "text": "MissingInputValidation"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {},
+                  "startLine": 15
+                }
+              }
+            }
+          ],
+          "ruleId": "Ignore_3"
+        },
+        {
+          "message": {
+            "text": "UnrestrictedEtherFlow"
+          },
+          "level": "none",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "dataset/reentrancy/simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {},
+                  "startLine": 18
+                }
+              }
+            }
+          ],
+          "ruleId": "AccessControl_17"
+        }
+      ]
+    },
+    {
+      "tool": {
+        "driver": {
+          "name": "Manticore",
+          "fullDescription": {
+            "text": "Manticore is a symbolic execution tool for analysis of smart contracts and binaries."
+          },
+          "informationUri": "https://github.com/trailofbits/manticore",
+          "rules": [
+            {
+              "id": "UncheckedLowCalls_1",
+              "name": "UncheckedLowCallsVulnerability",
+              "shortDescription": {
+                "text": "Returned value at CALL instruction is not used"
+              }
+            },
+            {
+              "id": "Reentrancy_2",
+              "name": "ReentrancyVulnerability",
+              "shortDescription": {
+                "text": "Reentrancy multi-million ether bug"
+              }
+            },
+            {
+              "id": "Other_4",
+              "name": "OtherVulnerability",
+              "shortDescription": {
+                "text": "Potentially reading uninitialized storage"
+              }
+            },
+            {
+              "id": "Reentrancy_1",
+              "name": "ReentrancyVulnerability",
+              "shortDescription": {
+                "text": "Potential reentrancy vulnerability"
+              }
+            },
+            {
+              "id": "AccessControl_7",
+              "name": "AccessControlVulnerability",
+              "shortDescription": {
+                "text": "Reachable external call to sender"
+              }
+            },
+            {
+              "id": "AccessControl_5",
+              "name": "AccessControlVulnerability",
+              "shortDescription": {
+                "text": "Reachable ether leak to sender"
+              }
+            }
+          ],
+          "version": "0.3.5"
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "simple_dao.sol"
+          },
+          "sourceLanguage": "Solidity"
+        }
+      ],
+      "results": [
+        {
+          "message": {
+            "text": "Returned value at CALL instruction is not used"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {
+                    "text": "credit[msg"
+                  },
+                  "startLine": 20
+                }
+              }
+            }
+          ],
+          "ruleId": "UncheckedLowCalls_1"
+        },
+        {
+          "message": {
+            "text": "Reentrancy multi-million ether bug"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {
+                    "text": "credit[msg"
+                  },
+                  "startLine": 20
+                }
+              }
+            }
+          ],
+          "ruleId": "Reentrancy_2"
+        },
+        {
+          "message": {
+            "text": "Potentially reading uninitialized storage"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {
+                    "text": ""
+                  },
+                  "startLine": 28
+                }
+              }
+            }
+          ],
+          "ruleId": "Other_4"
+        },
+        {
+          "message": {
+            "text": "Potentially reading uninitialized storage"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {
+                    "text": "fun"
+                  },
+                  "startLine": 16
+                }
+              }
+            }
+          ],
+          "ruleId": "Other_4"
+        },
+        {
+          "message": {
+            "text": "Potential reentrancy vulnerability"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {
+                    "text": "credit[msg"
+                  },
+                  "startLine": 20
+                }
+              }
+            }
+          ],
+          "ruleId": "Reentrancy_1"
+        },
+        {
+          "message": {
+            "text": "Reachable external call to sender"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {
+                    "text": "credit[msg"
+                  },
+                  "startLine": 20
+                }
+              }
+            }
+          ],
+          "ruleId": "AccessControl_7"
+        },
+        {
+          "message": {
+            "text": "Reachable ether leak to sender"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {
+                    "text": "credit[msg"
+                  },
+                  "startLine": 20
+                }
+              }
+            }
+          ],
+          "ruleId": "AccessControl_5"
+        },
+        {
+          "message": {
+            "text": "Potentially reading uninitialized storage"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {
+                    "text": ""
+                  },
+                  "startLine": 18
+                }
+              }
+            }
+          ],
+          "ruleId": "Other_4"
+        },
+        {
+          "message": {
+            "text": "Potentially reading uninitialized storage"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {
+                    "text": "func"
+                  },
+                  "startLine": 24
+                }
+              }
+            }
+          ],
+          "ruleId": "Other_4"
+        },
+        {
+          "message": {
+            "text": "Potentially reading uninitialized storage"
+          },
+          "level": "warning",
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "simple_dao.sol"
+                },
+                "region": {
+                  "snippet": {
+                    "text": "func"
+                  },
+                  "startLine": 12
+                }
+              }
+            }
+          ],
+          "ruleId": "Other_4"
+        }
+      ]
+    },
+    {
+      "tool": {
+        "driver": {
+          "name": "Maian",
+          "fullDescription": {
+            "text": "Maian is a tool for automatic detection of buggy Ethereum smart contracts of three different types prodigal, suicidal and greedy."
+          },
+          "informationUri": "https://github.com/ivicanikolicsg/MAIAN",
+          "rules": [],
+          "version": "5.10"
+        }
+      },
+      "artifacts": [
+        {
+          "location": {
+            "uri": "simple_dao"
+          },
+          "sourceLanguage": "Solidity"
+        }
+      ],
+      "results": []
     }
   ],
   "version": "2.1.0",
