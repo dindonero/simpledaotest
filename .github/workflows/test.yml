@@ -4,8 +4,6 @@ name: "Upload SARIF"
 # The scheduled workflow runs every at 00:00 on Sunday UTC time.
 on:
   push:
-  schedule:
-  - cron: '0 0 * * 0'
 
 jobs:
   build:
@@ -14,6 +12,7 @@ jobs:
     # This step checks out a copy of your repository.
     - name: Checkout repository
       uses: actions/checkout@v2
+    - run: ls
     - name: Upload SARIF file
       uses: github/codeql-action/upload-sarif@v1
       with:
