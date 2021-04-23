@@ -13,9 +13,9 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
     - run: python
-    - run: f = open("results.sarif", 'r')
-    - run: print(f.readlines())
-    - run: f.close()
+           f = open("results.sarif", 'r')
+           print(f.readlines())
+           f.close()
     - name: Upload SARIF file
       uses: github/codeql-action/upload-sarif@v1
       with:
