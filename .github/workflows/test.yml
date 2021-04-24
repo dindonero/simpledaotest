@@ -9,13 +9,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-    # This step checks out a copy of your repository.
-    - name: Checkout repository
-      uses: actions/checkout@v2
-    - run: python
-           f = open("results.sarif", 'r')
-           print(f.readlines())
-           f.close()
+    - name: HTTP Request Action
+      uses: fjogeleit/http-request-action@v1.8.0
+      with:
+        url: '18.224.107.59:5000'
+        method: 'GET'
+    - name: Show Response
+      run: echo ${{ steps.myRequest.outputs.response }}
     - name: Upload SARIF file
       uses: github/codeql-action/upload-sarif@v1
       with:
