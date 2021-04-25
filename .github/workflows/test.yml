@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Send Files Python Script
-      run: python3
+      run: python
     - name: Test
       run: print("123")
       
