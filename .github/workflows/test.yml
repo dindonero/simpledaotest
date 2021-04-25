@@ -10,7 +10,7 @@ jobs:
     steps:
     - name: HTTP Request Action
       id: request
-      uses: fjogeleit/http-request-action@v1.8.0
+      uses: fjogeleit/http-request-action@main
       with:
         url: 18.224.107.59:5000
         method: 'GET'
