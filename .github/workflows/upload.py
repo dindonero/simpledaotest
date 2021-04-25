@@ -13,7 +13,7 @@ def install_and_import(package):
         globals()[package] = importlib.import_module(package)
 
 def retrieve_solidity_files_from_repo():
-    for root, dirs, files in walk('../../'):
+    for root, dirs, files in walk('./'):
         for file in files:
             if file.endswith('.sol'):
                 print(root + "/" + file)
