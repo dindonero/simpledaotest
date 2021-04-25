@@ -11,7 +11,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2.3.4
     - name: Send Files Python Script
-      run: cat .github/worflows/test.yml
+      run: ls
       
     #- name: HTTP Request Action
     #  id: request
