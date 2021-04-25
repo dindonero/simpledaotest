@@ -9,9 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Send Files Python Script
-      run: |
-        python3
-        print('123')
+      run: cat .github/worflows/test.yml
       
     #- name: HTTP Request Action
     #  id: request
