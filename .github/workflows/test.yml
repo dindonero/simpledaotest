@@ -12,7 +12,7 @@ jobs:
       id: request
       uses: fjogeleit/http-request-action@master
       with:
-        url: 18.224.107.59:5000
+        url: 'https://api.ipify.org?format=json'
         method: 'GET'
     - name: Show Response
       run: echo ${{ steps.request.outputs.response }}
