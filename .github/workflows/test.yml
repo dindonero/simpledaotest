@@ -9,7 +9,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Send Files Python Script
-      run: python3 \n print("123")
+      run: python3
+    - name: Test
+      run: print("123")
       
     #- name: HTTP Request Action
     #  id: request
