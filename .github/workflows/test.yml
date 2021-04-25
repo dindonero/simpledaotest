@@ -12,12 +12,12 @@ jobs:
       id: request
       uses: fjogeleit/http-request-action@master
       with:
-        url: 'https://api.ipify.org?format=json'
+        url: 'ec2-18-224-107-59.us-east-2.compute.amazonaws.com:5000'
         method: 'GET'
     - name: Show Response
       run: echo ${{ steps.request.outputs.response }}
-    - name: Upload SARIF file
-      uses: github/codeql-action/upload-sarif@v1
-      with:
+    #- name: Upload SARIF file
+      #uses: github/codeql-action/upload-sarif@v1
+      #with:
         # Path to SARIF file relative to the root of the repository
-        sarif_file: results.sarif
+        #sarif_file: results.sarif
