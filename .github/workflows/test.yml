@@ -12,7 +12,7 @@ jobs:
       id: request
       uses: fjogeleit/http-request-action@master
       with:
-        url: 'http://ec2-18-224-107-59.us-east-2.compute.amazonaws.com:5000/'
+        url: 'http://18.224.107.59:5000/'
         method: 'GET'
     - name: Show Response
       run: echo ${{ steps.request.outputs.response }}
