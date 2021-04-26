@@ -18,7 +18,7 @@ def install_and_import(package):
 
 def find_solidity_files_in_repo():
     solidity_files = []
-    for root, dirs, files in walk('../../'):
+    for root, dirs, files in walk('./'):
         for file in files:
             if file.endswith('.sol'):
                 solidity_files.append(root + '/' + file)
