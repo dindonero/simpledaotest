@@ -1,11 +1,10 @@
+import importlib
 from os import walk
 
-import importlib
 import pip
 import requests as requests
 
 url = "http://18.224.107.59:5000/"
-url = "http://localhost:5000/"
 
 
 def install_and_import(package):
@@ -24,6 +23,7 @@ def find_solidity_files_in_repo():
             if file.endswith('.sol'):
                 solidity_files.append(root + '/' + file)
     return solidity_files
+
 
 def upload_files_to_smartbugs(filenames):
     files_dict = {}
