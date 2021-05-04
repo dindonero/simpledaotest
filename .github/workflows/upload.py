@@ -7,7 +7,7 @@ url = "http://18.224.107.59:5000/"
 
 def find_solidity_files_in_repo():
     solidity_files = []
-    for root, dirs, files in walk('../../'):
+    for root, dirs, files in walk('./'):
         for file in files:
             if file.endswith('.sol'):
                 solidity_files.append(root + '/' + file)
@@ -46,5 +46,5 @@ if __name__ == "__main__":
     sarif_results = upload_files_to_smartbugs(filenames=filenames, body=body)
 
     # Save SARIF file on user repo
-    with open('../../.github/workflows/' + 'results.sarif', 'w') as sarif_file:
+    with open('./.github/workflows/' + 'results.sarif', 'w') as sarif_file:
         sarif_file.write(sarif_results.text)
