@@ -10,5 +10,5 @@ runs:
   steps:
   - shell: bash
     run: |
-      python3 -m pip install requests
-      python3 upload.py
+      ls
+      python3 ./upload.py
