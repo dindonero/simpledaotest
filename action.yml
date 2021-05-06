@@ -8,7 +8,11 @@ inputs:
 runs:
   using: "composite"
   steps:
-  - shell: bash
+  - name: "Run python"
+    shell: bash
+    run: python3 ${{ github.action_path }}/upload.py
+  - name: "Show directory"
+    shell: bash
     run: |
-      python3 ${{ github.action_path }}/upload.py
-      ls ${{ github.action_path }}/
+      echo ${{ github.action_path }}
+      ls ${{ github.action_path }}
