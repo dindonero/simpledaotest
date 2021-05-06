@@ -1,9 +1,8 @@
-name: "Upload SARIF"
-
+name: 'SmartBugs Static Analysis'
+description: 'Run SmartBugs static analysis tools on Solidity Contracts in repo. Tools available: Honeybadger, Maian, Manticore, Mythril, Osiris, Oyente, Securify, Slither, SmartCheck, Solhint.'
+inputs:
+  
 # Run workflow each time code is pushed to your repository.
-on:
-  push:
-
 jobs:
   deployment:
     runs-on: ubuntu-latest
