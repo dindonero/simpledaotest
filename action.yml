@@ -10,5 +10,5 @@ runs:
   steps:
   - shell: bash
     run: |
-      ls
+      echo ls
       python3 ./upload.py
