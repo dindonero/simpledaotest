@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: test
-      uses: dindonero/simpledaotest@v8
+      uses: dindonero/smartbugs-static-analysis@v0.0.1
