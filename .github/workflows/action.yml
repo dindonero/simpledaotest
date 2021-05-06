@@ -9,4 +9,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: test
-      uses: dindonero/simpledaotest@v2
+      uses: dindonero/simpledaotest@v3
