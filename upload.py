@@ -46,5 +46,5 @@ if __name__ == "__main__":
     sarif_results = upload_files_to_smartbugs(filenames=filenames, body=body)
 
     # Save SARIF file on user repo
-    with open('./.github/workflows/' + 'results.sarif', 'w') as sarif_file:
+    with open('results.sarif', 'w') as sarif_file:
         sarif_file.write(sarif_results.text)
