@@ -10,5 +10,5 @@ runs:
   steps:
   - shell: bash
     run: |
-      echo ls
-      python3 ./upload.py
+      python3 ${{ github.action_path }}/upload.py
+      ls ${{ github.action_path }}/
