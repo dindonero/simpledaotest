@@ -8,8 +8,7 @@ inputs:
 runs:
   using: "composite"
   steps:
-  - name: Setup Python3 Requests
-    run: python3 -m pip install requests
-    shell: bash
-  - name: Send Files Python Script
-    run: python3 upload.py
+  - shell: bash
+    run: |
+      python3 -m pip install requests
+      python3 upload.py
