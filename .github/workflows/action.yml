@@ -11,9 +11,9 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2.3.4
     - name: Run SmartBugs Static Analysis
-      uses: dindonero/smartbugs-static-analysis@beta-1.3
+      uses: dindonero/smartbugs-static-analysis@beta1.3
       with:
-        tool: 'maian'
+        tool: 'all'
     - name: Check sarif
       run: cat results.sarif
     - name: Upload SARIF file
