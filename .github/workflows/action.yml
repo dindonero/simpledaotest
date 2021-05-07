@@ -13,7 +13,7 @@ jobs:
     - name: Run SmartBugs Static Analysis
       uses: dindonero/smartbugs-static-analysis@beta1.3
       with:
-        tool: 'all'
+        tool: 'oyente,mythril,slither'
     - name: Check sarif
       run: cat results.sarif
     - name: Upload SARIF file
