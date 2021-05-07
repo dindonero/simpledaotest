@@ -9,4 +9,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: test
-      uses: dindonero/smartbugs-static-analysis@v0.0.1
+      run: |
+        echo ${{ github.action_path }}
+        echo sha: ${{ github.sha }}
+        echo token: ${{ github.token }}
