@@ -11,7 +11,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2.3.4
     - name: Run SmartBugs Static Analysis
-      uses: dindonero/smartbugs-static-analysis@beta-1.2
+      uses: dindonero/smartbugs-static-analysis@beta-1.3
       with:
         tool: 'oyente'
     - name: Upload SARIF file
