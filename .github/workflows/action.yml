@@ -11,6 +11,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2.3.4
     - name: Run smartbugs static analysis
-    - run: |
+      run: |
           git clone https://github.com/smartbugs/smartbugs.git
           python3 -m pip install -r smartbugs/requirements.txt
