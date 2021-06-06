@@ -15,5 +15,5 @@ jobs:
           git clone https://github.com/smartbugs/smartbugs.git
           python3 -m pip install -r smartbugs/requirements.txt
           rm -r smartbugs/dataset/
-          python3 smartbugs/smartbugs.py --tool conkas --file ./
+          python3 smartbugs/smartBugs.py --tool conkas --file ./
           tree
