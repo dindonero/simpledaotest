@@ -10,13 +10,6 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2.3.4
-    - name: Run SmartBugs Static Analysis
-      uses: dindonero/smartbugs-static-analysis@beta1.3
-      with:
-        tool: 'conkas'
-    - name: Check sarif
-      run: cat results.sarif
-    - name: Upload SARIF file
-      uses: github/codeql-action/upload-sarif@v1
-      with:
-        sarif_file: results.sarif
+    - name: |
+          git clone https://github.com/smartbugs/smartbugs.git
+          python3 -m pip install -r smartbugs/requirements.txt
