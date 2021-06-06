@@ -13,7 +13,8 @@ jobs:
     - name: Run smartbugs static analysis
       run: |
           git clone https://github.com/smartbugs/smartbugs.git
-          python3 -m pip install -r smartbugs/requirements.txt
-          rm -r smartbugs/dataset/
-          python3 smartbugs/smartBugs.py --tool conkas --file ./
+          cd smartbugs
+          python3 -m pip install -r requirements.txt
+          rm -r dataset/
+          python3 smartBugs.py --tool conkas --file ../
           tree
