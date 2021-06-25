@@ -2,7 +2,7 @@ name: "Upload SARIF"
 
 # Run workflow each time code is pushed to your repository.
 on:
-  push: 
+  pull_request_review_comment: 
 
 jobs:
   deployment:
