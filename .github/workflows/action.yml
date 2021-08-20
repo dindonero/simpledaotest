@@ -15,9 +15,8 @@ jobs:
           git clone https://github.com/smartbugs/smartbugs.git
           python3 -m pip install -r smartbugs/requirements.txt
           rm -r smartbugs/dataset/
-          docker image ls
     - name: Run smartbugs static analysis
       run: |
           cd smartbugs
-          python3 smartBugs.py --tool conkas --file ../ --unique-sarif-output
+          python3 smartBugs.py --tool conkas --file ../ --import-path ../ --unique-sarif-output
           tree
