@@ -10,11 +10,14 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v2.3.4
-    - name: Run smartbugs static analysis
+    - name: Setup Smartbugs
       run: |
           git clone https://github.com/smartbugs/smartbugs.git
           cd smartbugs
           python3 -m pip install -r requirements.txt
           rm -r dataset/
+          docker image ls
+    - name: Run smartbugs static analysis
+      run: |
           python3 smartBugs.py --tool conkas --file ../ --unique-sarif-output
           tree
