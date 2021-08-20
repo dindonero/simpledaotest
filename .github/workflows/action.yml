@@ -16,5 +16,5 @@ jobs:
           cd smartbugs
           python3 -m pip install -r requirements.txt
           rm -r dataset/
-          python3 smartBugs.py --tool conkas --file ../
+          python3 smartBugs.py --tool conkas --file ../ --unique-sarif-output
           tree
