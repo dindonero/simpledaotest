@@ -13,7 +13,7 @@ jobs:
     - name: Run SmartBugs Static Analysis
       uses: dindonero/smartbugs-static-analysis@b1.2
       with:
-        tool: 'conkas'
+        tool: 'conkas,oyente'
     - name: Check sarif
       run: cat results.sarif
     - name: Upload SARIF file
