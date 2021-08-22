@@ -17,5 +17,5 @@ jobs:
           rm -r smartbugs/dataset/
     - name: Run smartbugs static analysis
       run: |
-          python3 smarbugs/smartBugs.py --tool conkas --file ./ --unique-sarif-output
+          python3 smartbugs/smartBugs.py --tool conkas --file ./ --unique-sarif-output
           tree
