@@ -16,6 +16,7 @@ jobs:
           rm -r smartbugs/dataset/
     - name: Run smartbugs static analysis
       run: |
+          tree
           source venv/bin/activate
           python3 smartbugs/smartBugs.py --tool conkas --file ./ --unique-sarif-output
           sarif_file="$(basename smartbugs/results/*.sarif)"
