@@ -19,7 +19,8 @@ jobs:
       run: |
           python3 smartbugs/smartBugs.py --tool conkas --file ./ --unique-sarif-output
           sarif_file="$(basename smartbugs/results/*.sarif)"
+          mv smartbugs/results/$sarif_file smartbugs/results/results.sarif
     - name: Upload SARIF file
       uses: github/codeql-action/upload-sarif@v1
       with:
-        sarif_file: smartbugs/results/$sarif_file
+        sarif_file: smartbugs/results/results.sarif
