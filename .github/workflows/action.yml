@@ -2,7 +2,7 @@ name: "Upload SARIF"
 
 # Run workflow each time code is pushed to your repository.
 on:
-  pull_request_review_comment: 
+  push: 
 
 jobs:
   deployment:
@@ -13,7 +13,7 @@ jobs:
     - name: Setup Smartbugs
       run: |
           git clone --single-branch --branch module-capability https://github.com/smartbugs/smartbugs.git
-          python3 -m pip install -r smartbugs/requirements.txt
+          source venv/bin/activate
           rm -r smartbugs/dataset/
     - name: Run smartbugs static analysis
       run: |
