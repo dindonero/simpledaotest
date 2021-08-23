@@ -13,10 +13,10 @@ jobs:
     - name: Setup Smartbugs
       run: |
           git clone --single-branch --branch module-capability https://github.com/smartbugs/smartbugs.git
-          source venv/bin/activate
           rm -r smartbugs/dataset/
     - name: Run smartbugs static analysis
       run: |
+          source venv/bin/activate
           python3 smartbugs/smartBugs.py --tool conkas --file ./ --unique-sarif-output
           sarif_file="$(basename smartbugs/results/*.sarif)"
           mv smartbugs/results/$sarif_file smartbugs/results/results.sarif
