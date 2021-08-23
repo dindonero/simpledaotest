@@ -1,0 +1,22 @@
+name: "Upload SARIF"
+
+# Run workflow each time code is pushed to your repository.
+on:
+  push: 
+
+jobs:
+  deployment:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Create venv
+      run: |
+          python3 -m venv venv/
+          source venv/bin/activate
+          git clone --single-branch --branch module-capability https://github.com/smartbugs/smartbugs.git
+          python3 -m pip install -r smartbugs/requirements.txt
+    - name: Upload sarif
+      uses: actions/upload-artifact@v2
+      with:
+          name: venv-artifact
+          path: venv/
+          
