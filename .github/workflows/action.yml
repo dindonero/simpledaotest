@@ -13,16 +13,14 @@ jobs:
     - name: Setup Smartbugs
       run: |
           git clone --single-branch --branch module-capability https://github.com/smartbugs/smartbugs.git
+          python3 -m pip install -r smartbugs/requirements.txt
           rm -r smartbugs/dataset/
     - name: Run smartbugs static analysis
       run: |
-          tree
-          source venv/bin/activate
           python3 smartbugs/smartBugs.py --tool conkas --file ./ --unique-sarif-output
           sarif_file="$(basename smartbugs/results/*.sarif)"
           mv smartbugs/results/$sarif_file smartbugs/results/results.sarif
-    - name: Upload sarif
-      uses: actions/upload-artifact@v2
+    - name: Upload SARIF file
+      uses: github/codeql-action/upload-sarif@v1
       with:
-          name: results.sarif
-          path: smartbugs/results/results.sarif
+        sarif_file: smartbugs/results/results.sarif
