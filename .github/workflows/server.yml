@@ -2,7 +2,7 @@ name: "Upload SARIF"
 
 # Run workflow each time code is pushed to your repository.
 on:
-  pull_request_review_comment: 
+  push: 
 
 jobs:
   deployment:
@@ -11,7 +11,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2.3.4
     - name: Run SmartBugs Static Analysis
-      uses: dindonero/smartbugs-static-analysis@b1.2
+      uses: dindonero/smartbugs-local-static-analysis@b1
       with:
         tool: 'conkas,oyente'
     - name: Check sarif
