@@ -11,7 +11,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2.3.4
     - name: Run SmartBugs Static Analysis
-      uses: dindonero/smartbugs-local-static-analysis@b1
+      uses: dindonero/smartbugs-local-static-analysis@b1.1
       with:
         tool: 'conkas,oyente'
     - name: Check sarif
