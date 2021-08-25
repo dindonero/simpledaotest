@@ -9,6 +9,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Run SmartBugs Static Analysis
-      uses: dindonero/smartbugs-local-static-analysis@b1.2
+      uses: dindonero/smartbugs-static-analysis@b1.4
       with:
         tool: 'conkas oyente'
