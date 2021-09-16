@@ -17,7 +17,7 @@ jobs:
           rm -r smartbugs/dataset/
     - name: Run smartbugs static analysis
       run: |
-          python3 smartbugs/smartBugs.py --tool conkas --file ./ --unique-sarif-output
+          python3 smartbugs/smartBugs.py --tool all --file ./ --unique-sarif-output
           sarif_file="$(basename smartbugs/results/*.sarif)"
           mv smartbugs/results/$sarif_file smartbugs/results/results.sarif
     - name: Upload SARIF file
